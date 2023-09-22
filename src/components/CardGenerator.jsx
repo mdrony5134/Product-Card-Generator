@@ -1,32 +1,37 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup"
+import * as yup from 'yup';
+
+// yup schema
+const schema = yup.object({
+    image: yup.mixed().required("Image is required"),
+    heading: yup.string().required("Heading is required!"),
+    title: yup.string().required("Title is required!"),
+    price: yup.number("Price must be number").positive("Filled positive number!").required("Price is required"),
+    category: yup.string().required("Category is required!"),
+})
+
 
  const CardGenerator = () => {
-    const [cards, setCards] = useState([])
-    const [image, setImage] = useState('')
-    const [heading, setHeading] = useState('')
-    const [title, setTitle] = useState('')
-    const [price, setPrice] = useState('')
-    const [category, setCategory] = useState('')
 
-const generateCard = () =>{
-    if(image && heading && title && price && category){
+    const {register,handleSubmit, formState:{errors}} = useForm({
+        resolver: yupResolver(schema)
+    })
+
+
+    const [cards, setCards] = useState([])
+
+    const onSubmit = (data) =>{
+        // console.log(data)
         const newCard = {
-            image,
-            heading,
-            title,
-            price,
-            category,
+            ...data,
+            image: URL.createObjectURL(data.image[0])
         }
         setCards([...cards, newCard])
-        console.log(setCards);
-        setImage('')
-        setHeading('')
-        setTitle('')
-        setPrice('')
-        setCategory('')
-    }
 }
  
+
 const renderCardsCategory = (category) =>{
     return cards
                 .filter((card)=> card.category === category)
@@ -36,7 +41,7 @@ const renderCardsCategory = (category) =>{
                     <div className="card-details">
                         <h3>{heading}</h3>
                         <p>{title}</p>
-                        <span>{price}</span>
+                        <span>{price} TK</span>
                     </div>
                 </div>
                 ))
@@ -46,46 +51,50 @@ const renderCardsCategory = (category) =>{
     return (
         <div>
             <div className="card-generator">
-                <div className="form">
+                <form className="form" onSubmit={handleSubmit(onSubmit)}>
                     <h2>Create a Product Card</h2>
                 <input 
                     type="file" 
-                    onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]), console.log(e.target.files))}
                     accept="image/*"
+                    {...register("image", {required: false})}
                 />
+                {!!errors.image && <FormError {...{err: errors?.image?.message}}/>}
 
-                <input 
+                <input
                 type="text" 
                 placeholder="Heading"
-                value={heading}
-                onChange={(e) => setHeading(e.target.value)}
+                {...register("heading")}
                 />
+                {!!errors?.heading && <FormError {...{err: errors?.heading?.message}}/>}
 
                 <input 
                 type="text" 
                 placeholder="Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                {...register("title")}
                 />
+                {!!errors.title && <FormError {...{err: errors?.title?.message}}/>}
 
                 <input 
                 type="text" 
                 placeholder="Price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                {...register("price")}
                 />
+                {!!errors.price && <FormError {...{err: errors?.price?.message}}/>}
 
                 <label>
-                    {/* Select Category: */}
-                    <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                    <select 
+                    {...register("category")}>
                     <option value="">Select Category</option>
                     <option value="Men's T-shirt">Men's T-shirt</option>
                     <option value="Men's Pant">Men's Pant</option>
                     <option value="Kid's Dress">Kids Dress</option>
                     </select>
                 </label>
-                <button onClick={generateCard}>Generate Card</button>
-                </div>
+
+                {!!errors.category && <FormError {...{err: errors?.category?.message}}/>}
+
+                <button type="submit">Generate Card</button>
+                </form>
             </div>
 
         <h1>Product Catagories</h1>
@@ -119,3 +128,4 @@ const renderCardsCategory = (category) =>{
 };
 
 export default CardGenerator;
+export const  FormError = ({err}) => <div className="error">{err}</div>;
