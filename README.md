@@ -18,7 +18,7 @@ Key features of the `CardGenerator` component include:
 
 3. Dynamic Card Generation: When the user submits the form, a new product card is generated and displayed in the corresponding category section.
 
-4. Card Categories: The product cards are categorized into "Men's T-shirt," "Men's Pant," and "Kid's Dress" sections based on the selected category.
+4. Card Categories: The product cards are categorized into `Men's T-shirt`, `Men's Pant` and  `Kid's Dress` sections based on the selected category.
 
 5. State Management: The component uses the `useState` hook to manage the state of the created product cards, allowing users to see their generated cards.
 
@@ -29,4 +29,5 @@ Key features of the `CardGenerator` component include:
 Overall, the `CardGenerator` component provides a user-friendly interface for creating and categorizing product cards with real-time validation and dynamic card generation.
 
 
-Live Demo: https://mdrony5134.github.io/Product-Card-Generator/
+
+Live Demo:  https://mdrony5134.github.io/Product-Card-Generator/
