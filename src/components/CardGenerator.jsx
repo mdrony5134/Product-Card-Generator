@@ -15,7 +15,7 @@ const schema = yup.object({
 
  const CardGenerator = () => {
 
-    const {register,handleSubmit, formState:{errors}} = useForm({
+    const {register,handleSubmit, reset, formState:{errors}} = useForm({
         resolver: yupResolver(schema)
     })
 
@@ -23,12 +23,12 @@ const schema = yup.object({
     const [cards, setCards] = useState([])
 
     const onSubmit = (data) =>{
-        // console.log(data)
         const newCard = {
             ...data,
             image: URL.createObjectURL(data.image[0])
         }
         setCards([...cards, newCard])
+        reset();
 }
  
 
