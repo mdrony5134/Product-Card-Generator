@@ -8,7 +8,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # Product-Card-Generator
 
-The project is a React component called `CardGenerator` that allows users to create product cards with various fields like image, heading, title, price, and category. The component uses the `react-hook-form` library for form management and validation with schema defined using Yup.
+The project is a React component called `CardGenerator` that allows users to create product cards with various fields like image, heading, title, price, and category. The component uses the `react-hook-form` library for form management and validation with schema defined using `Yup`.
 
 Key features of the `CardGenerator` component include:
 
