@@ -6,6 +6,7 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
 # Product-Card-Generator
 
 The project is a React component called `CardGenerator` that allows users to create product cards with various fields like image, heading, title, price, and category. The component uses the `react-hook-form` library for form management and validation with schema defined using `Yup`.
@@ -28,6 +29,8 @@ Key features of the `CardGenerator` component include:
 
 Overall, the `CardGenerator` component provides a user-friendly interface for creating and categorizing product cards with real-time validation and dynamic card generation.
 
+
+![image](https://github.com/mdrony5134/tic-tac-toe/assets/98208421/abbd9cf6-668f-4522-b641-db56d2c4d539)
 
 
 Live Demo:  https://mdrony5134.github.io/Product-Card-Generator/
